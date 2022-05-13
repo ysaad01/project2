@@ -1,50 +1,39 @@
-const loginFormHandler = async (event) => {
-  event.preventDefault();
+$(document).ready(() => {
+  // Getting references to our form and inputs
+  const loginForm = $("form.login");
+  const emailInput = $("input#email-input");
+  const passwordInput = $("input#password-input");
 
-  const email = document.querySelector('#email-login').value.trim();
-  const password = document.querySelector('#password-login').value.trim();
+  // When the form is submitted, we validate there's an email and password entered
+  loginForm.on("submit", event => {
+    event.preventDefault();
+    const userData = {
+      email: emailInput.val().trim(),
+      password: passwordInput.val().trim()
+    };
 
-  if (email && password) {
-    const response = await fetch('/api/users/login', {
-      method: 'POST',
-      body: JSON.stringify({ email, password }),
-      headers: { 'Content-Type': 'application/json' },
-    });
-
-    if (response.ok) {
-      document.location.replace('/');
-    } else {
-      alert('Failed to log in.');
+    if (!userData.email || !userData.password) {
+      return;
     }
+
+    // If we have an email and password we run the loginUser function and clear the form
+    loginUser(userData.email, userData.password);
+    emailInput.val("");
+    passwordInput.val("");
+  });
+
+  // loginUser does a post to our "api/login" route and if successful, redirects us the the members page
+  function loginUser(email, password) {
+    $.post("/api/login", {
+      email: email,
+      password: password
+    })
+      .then(() => {
+        window.location.replace("/members");
+        // If there's an error, log the error
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
-};
-
-const signupFormHandler = async (event) => {
-  event.preventDefault();
-
-  const username = document.querySelector('#username-signup').value.trim();
-  const email = document.querySelector('#email-signup').value.trim();
-  const password = document.querySelector('#password-signup').value.trim();
-
-  if (username && email && password) {
-    const response = await fetch('/api/users', {
-      method: 'POST',
-      body: JSON.stringify({ username, email, password }),
-      headers: { 'Content-Type': 'application/json' },
-    });
-
-    if (response.ok) {
-      document.location.replace('/');
-    } else {
-      alert('Failed to sign up.');
-    }
-  }
-};
-
-document
-  .querySelector('.login-form')
-  .addEventListener('submit', loginFormHandler);
-
-document
-  .querySelector('.signup-form')
-  .addEventListener('submit', signupFormHandler);
+});
