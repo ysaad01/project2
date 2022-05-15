@@ -11,4 +11,48 @@
 
 body {
   color: var(--tertiary-color);
+  max-width: 100%;
+}
+
+h1 {
+  text-align: center;
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  margin: 0;
+  padding-bottom: 8px;
+}
+
+.about {
+  height: 80vh;
+}
+
+.hero {
+  background-image: url("../img/DPH-Chelsea-Lobby.jpg");
+  background-size: cover;
+  background-position: 100%;
+  background-attachment: fixed;
+  display: block;
+}
+
+.btn {
+  max-height: 200px;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 20px;
+}
+
+.login, .signup {
+  height: 30px;
+  width: 100px;
+  margin: 0 10px;
+  border-radius: 10px;
+  background-color: var(--tertiary-color);
+  color: white;
+}
+
+footer {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  text-align: center;
+  padding: 10px;
 }
