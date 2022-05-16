@@ -22,6 +22,10 @@ const { User, Pets } = require("../models");
 //     });
 // });
 
+router.get("/", (req, res) => {
+  res.render("homepage");
+});
+
 // Render the login page
 router.get("/login", (req, res) => {
   res.render("login");
