@@ -1,39 +1,28 @@
-$(document).ready(() => {
-  // Getting references to our form and inputs
-  const loginForm = $("form.login");
-  const emailInput = $("input#email-input");
-  const passwordInput = $("input#password-input");
+async function loginFormHandler(event) {
+  event.preventDefault();
 
-  // When the form is submitted, we validate there's an email and password entered
-  loginForm.on("submit", event => {
-    event.preventDefault();
-    const userData = {
-      email: emailInput.val().trim(),
-      password: passwordInput.val().trim()
-    };
+  // get the information from the login form
+  const email = document.querySelector("#email-login").value.trim();
+  const password = document.querySelector("#password-login").value.trim();
 
-    if (!userData.email || !userData.password) {
-      return;
+  if (email && password) {
+    const response = await fetch("/api/users/login", {
+      method: "post",
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+      headers: { "Content-Type": "application/json" },
+    });
+    if (response.ok) {
+      document.location.replace("/dashboard");
+    } else {
+      let result = await response.json();
+      alert(result.message);
     }
-
-    // If we have an email and password we run the loginUser function and clear the form
-    loginUser(userData.email, userData.password);
-    emailInput.val("");
-    passwordInput.val("");
-  });
-
-  // loginUser does a post to our "api/login" route and if successful, redirects us the the members page
-  function loginUser(email, password) {
-    $.post("/api/login", {
-      email: email,
-      password: password
-    })
-      .then(() => {
-        window.location.replace("/members");
-        // If there's an error, log the error
-      })
-      .catch(err => {
-        console.log(err);
-      });
   }
-});
+}
+
+document
+  .querySelector("#login-form")
+  .addEventListener("submit", loginFormHandler);
