@@ -1,5 +1,4 @@
 const router = require("express").Router();
-const { get } = require("express/lib/response");
 const { User, Pets } = require("../../models");
 
 // GET ALL users
@@ -21,7 +20,6 @@ router.get("/", (req, res) => {
 // GET user by ID
 router.get("/:id", async (req, res) => {
   // find one category by its `id` value
-  // be sure to include its associated Products
   try {
     const userData = await User.findByPk(req.params.id, {
       include: {
