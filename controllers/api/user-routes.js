@@ -1,5 +1,10 @@
 const router = require("express").Router();
 const { User, Pets } = require("../../models");
+const session = require("express-session");
+const passport = require("passport");
+const genPassword = require("../../lib/passwordUtils").genPassword;
+const isAuth = require("../../utils/auth").isAuth;
+const SequelizeStore = require("connect-session-sequelize")(session.Store);
 
 // GET ALL users
 router.get("/", (req, res) => {
@@ -15,6 +20,18 @@ router.get("/", (req, res) => {
     .catch((err) => {
       res.status(500).json(err);
     });
+});
+
+router.post(
+  "/login",
+  passport.authenticate("local", {
+    failureRedirect: "/login",
+    successRedirect: "/home",
+  })
+);
+router.get("/logout", (req, res, next) => {
+  req.logout();
+  res.redirect("/");
 });
 
 // GET user by ID
