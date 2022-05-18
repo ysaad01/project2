@@ -1,0 +1,41 @@
+  <div class = "column">
+    <h1>Dashboard</h1>
+    {{> user-info}}
+  </div>
+<section class="row">
+  <div class = "column">
+    <p>Pets: {{pets.length}}</p>
+    <h2>Add a New Pet</h2>
+
+    <form class="new-post-form">
+      <div>
+        <label for="post-title">Title</label>
+        <input type="text" id="post-title" name="post-title" />
+      </div>
+      <div>
+        <label for="post-text">Name</label>
+        <textarea id="post-text" name="post-text"></textarea>
+      </div>
+      <button type="submit" class="btn">Add Pet</button>
+    </form>
+  </div>
+
+</section>
+
+{{#if pets.length}}
+<section>
+  <h2>Your Pets</h2>
+  <ol>
+    {{#each pets as |pet|}}
+    <li>
+
+      <a href="/dashboard/edit/{{pets.id}}" class="edit-link">Edit Pet Information</a>
+    </li>
+    {{/each}}
+  </ol>
+</section>
+{{/if}}
+
+<script src="/js/add-pet.js"></script>
+
+

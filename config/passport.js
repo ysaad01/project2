@@ -3,41 +3,54 @@ const LocalStrategy = require("passport-local").Strategy;
 const connection = require("./connection");
 
 const { User } = require("../models");
+const { genPassword } = require("../lib/passwordUtils");
 const validPassword = require("../lib/passwordUtils").validPassword;
 const customFields = {
   usernameField: "email",
   passwordField: "password",
 };
 const verifyCallback = (username, password, done) => {
+  console.log("verifyCallback", username, password, done);
   User.findOne({ where: { email: username } })
     .then((user) => {
       if (!user) {
         return done(null, false);
       }
-      const isValid = validPassword(password, user.hash, user.salt);
+      console.log("verifyCallback", user);
+      const salt = genPassword(password).salt;
+      const isValid = validPassword(
+        password,
+        user.dataValues.password,
+        user.dataValues.salt
+      );
       if (isValid) {
+        console.log("IS VALID");
         return done(null, user);
       } else {
+        console.log("INVALID");
         return done(null, false);
       }
     })
     .catch((err) => {
-      done(err);
+      return done(err);
     });
 };
 const strategy = new LocalStrategy(customFields, verifyCallback);
 passport.use(strategy);
 passport.serializeUser((user, done) => {
-  done(null, user.id);
+  console.log("in serializer");
+  return done(null, user.id);
 });
 passport.deserializeUser((userId, done) => {
+  console.log("in DEserializer");
   User.findOne({ where: { id: userId } })
     .then((user) => {
-      done(null, user);
+      return done(null, user);
     })
     .catch((err) => done(err));
 });
 
+module.exports = passport;
 
 // // Telling passport we want to use a Local Strategy. In other words, we want login with a username/email and password
 // passport.use(new LocalStrategy(
