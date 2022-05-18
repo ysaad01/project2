@@ -10,4 +10,8 @@ Pets.belongsTo(User, {
   foreignKey: "owner_id",
 });
 
+// pets to appt association(pet has many appts but appt belongs to one pet)
+
+// user to appt association(user has many appts but appt belongs to one user)
+
 module.exports = { User, Pets };

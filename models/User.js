@@ -1,7 +1,11 @@
-const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../config/connection');
+const { Model, DataTypes } = require("sequelize");
+const sequelize = require("../config/connection");
+const bcrypt = require("bcrypt");
 
 class User extends Model {
+  checkPassword(loginPW) {
+    return bcrypt.compareSync(loginPW, this.password);
+  }
 }
 
 User.init(
@@ -27,13 +31,12 @@ User.init(
     password: {
       type: DataTypes.STRING,
       allowNull: false,
-      },
-    profileImage: {
-      type: DataTypes.STRING,
-      allowNull: true,
       validate: {
-        isUrl: true,
+        len: [4],
       },
+    },
+    salt: {
+      type: DataTypes.STRING,
     },
   },
   {
@@ -41,7 +44,7 @@ User.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'user',
+    modelName: "user",
   }
 );
 
