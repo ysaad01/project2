@@ -33,7 +33,7 @@ router.get("/:id", (req, res) => {
 
 // Create a new pet
 router.post("/", (req, res) => {
-  // create a new tag
+  // create a new PET
   Pets.create({
     dog_name: req.body.dog_name,
     gender: req.body.gender,
@@ -41,6 +41,7 @@ router.post("/", (req, res) => {
     owner_id: req.body.owner_id,
   })
     .then((petData) => {
+      // instead of sending back pet data might want to try res.redirect(/dashboard)
       res.json(petData);
     })
     .catch((err) => {
