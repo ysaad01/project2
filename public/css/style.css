@@ -74,3 +74,23 @@ footer {
   border: 2px solid;
   width: auto;
 }
+
+
+@media screen and (max-width: 980px) {
+
+  header{
+    padding-bottom: 0;
+    justify-content: center;
+  }
+
+  header h1 {
+    width: 100%;
+    text-align: center;
+  }
+
+
+  footer {
+    text-align: center;
+    width: 100%;
+  }
+}
