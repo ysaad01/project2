@@ -22,6 +22,18 @@ router.get("/", (req, res) => {
     });
 });
 
+router.post(
+  "/login",
+  passport.authenticate("local", {
+    failureRedirect: "/login",
+    successRedirect: "/home",
+  })
+);
+router.get("/logout", (req, res, next) => {
+  req.logout();
+  res.redirect("/");
+});
+
 // GET user by ID
 router.get("/:id", async (req, res) => {
   // find one category by its `id` value
