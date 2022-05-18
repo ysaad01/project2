@@ -68,17 +68,18 @@ router.post("/", (req, res) => {
     password: req.body.password,
   })
     .then((dbUserData) => {
-      res.json(dbUserData);
+      req.session.save(() => {
+        req.session.user_id = dbUserData.id;
+        req.session.username = dbUserData.username;
+        req.session.loggedIn = true;
+
+        res.json(dbUserData);
+      });
     })
     .catch((err) => {
       console.log(err);
       res.status(500).json(err);
     });
-  // req.session.save(() => {
-  //   req.session.loggedIn = true;
-
-  //   res.status(200).json(dbUserData);
-  // });
 });
 
 // Update user
@@ -154,11 +155,12 @@ router.post("/login", async (req, res) => {
     }
 
     req.session.save(() => {
+      // declare session variables
+      req.session.user_id = dbUserData.id;
+      req.session.username = dbUserData.username;
       req.session.loggedIn = true;
 
-      res
-        .status(200)
-        .json({ user: dbUserData, message: "You are now logged in!" });
+      res.json({ user: dbUserData, message: "You are now logged in!" });
     });
   } catch (err) {
     console.log(err);
