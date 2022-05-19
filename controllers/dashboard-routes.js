@@ -3,8 +3,13 @@ const sequelize = require("../config/connection");
 const { User, Pets } = require("../models");
 const isAuth = require("../utils/auth");
 
+// render dashboard for logged in user
 router.get("/dashboard", isAuth, (req, res) => {
+  console.log("DASHBOARD ROUTES");
   Pets.findAll({
+    where: {
+      user_id: req.session.user_id,
+    },
     attributes: ["id", "dog_name", "gender", "bio"],
     include: {
       model: User,
@@ -13,10 +18,7 @@ router.get("/dashboard", isAuth, (req, res) => {
   })
     .then((dbPetsData) => {
       const user = dbPetsData.map((user) => user.get({ plain: true }));
-      res.render("dashboard", {
-        user,
-        loggedIn: req.session.loggedIn,
-      });
+      res.render("dashboard", { user, loggedIn: true });
     })
     .catch((err) => {
       console.log(err);
@@ -24,32 +26,4 @@ router.get("/dashboard", isAuth, (req, res) => {
     });
 });
 
-router.get("/", (req, res) => {
-  res.render("homepage");
-});
-
-// Render the login page
-router.get("/login", (req, res) => {
-  if (req.session.loggedIn) {
-    res.redirect("/dashboard");
-    return;
-  }
-  res.render("login");
-});
-
-// Render the sign up page
-router.get("/signup", (req, res) => {
-  if (req.session.loggedIn) {
-    res.redirect("dashboard");
-  }
-  res.render("signup");
-});
-
-<<<<<<< HEAD
-
-=======
-router.get("/dashboard", (req, res) => {
-  res.render("dashboard");
-});
->>>>>>> main
 module.exports = router;
