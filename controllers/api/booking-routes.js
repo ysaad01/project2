@@ -39,6 +39,7 @@ router.post("/", (req, res) => {
   Booking.create({
 <<<<<<< Updated upstream
     owner_id: req.body.owner_id,
+    pets_id: req.body.pets_id,
     dog_name: req.body.dog_name,
 =======
 >>>>>>> Stashed changes
@@ -65,10 +66,27 @@ router.put("/:id", (req, res, next) => {
 });
 
 // Delete a booking
-router.delete("/booking/:id", (req, res, next) => {
-  Booking.findByIdAndRemove({ _id: req.params.id }).then((booking) => {
-    res.send(booking);
-  });
+// router.delete("/:id", (req, res, next) => {
+//   Booking.findByIdAndRemove({ _id: req.params.id }).then((booking) => {
+//     res.send(booking);
+//   });
+// });
+
+router.delete("/:id", async (req, res) => {
+  // delete a user by its `id` value
+  try {
+    const deleteBooking = await Booking.destroy({
+      where: {
+        id: req.params.id,
+      },
+    });
+    res.status(201).json({
+      message: "Booking has been deleted!",
+      data: deleteBooking,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 module.exports = router;
