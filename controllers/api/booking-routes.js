@@ -37,8 +37,11 @@ router.get("/:id", (req, res) => {
 router.post("/", (req, res) => {
   // create a new PET
   Booking.create({
+<<<<<<< Updated upstream
     owner_id: req.body.owner_id,
     dog_name: req.body.dog_name,
+=======
+>>>>>>> Stashed changes
     startDate: req.body.startDate,
     endDate: req.body.endDate,
   })

@@ -27,11 +27,19 @@ Booking.init(
       },
     },
     startDate: {
+<<<<<<< Updated upstream
       type: DATE,
       required: true,
     },
     endDate: {
       type: DATE,
+=======
+      type: DataTypes.INTEGER,
+      required: true,
+    },
+    endDate: {
+      type: DataTypes.INTEGER,
+>>>>>>> Stashed changes
       required: true,
     },
   },
