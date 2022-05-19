@@ -1,46 +1,47 @@
 const { Model, DataTypes, DATE } = require("sequelize");
 const sequelize = require("../config/connection");
+const passport = require("../config/passport");
 
-class Booking extends Model { }
+class Booking extends Model {}
 
 Booking.init(
-    {
-        id: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            primaryKey: true,
-            autoIncrement: true,
-        },
-        user_id: {
-            type: DataTypes.STRING,
-            references: {
-                model: 'user',
-                key: 'id'
-            }
-        },
-        pets: {
-            type: DataTypes.STRING,
-            references: {
-                model: 'pets',
-                key: 'id'
-            }
-        },
-        startDate: {
-            type: DATE,
-            required: true,
-        },
-        endDate: {
-            type: DATE,
-            required: true,
-        },
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true,
     },
-    {
-        sequelize,
-        timestamps: false,
-        freezeTableName: true,
-        underscored: true,
-        modelName: 'booking',
-    }
+    owner_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: "user",
+        key: "id",
+      },
+    },
+    pets_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: "pets",
+        key: "id",
+      },
+    },
+    startDate: {
+      type: DATE,
+      required: true,
+    },
+    endDate: {
+      type: DATE,
+      required: true,
+    },
+  },
+  {
+    sequelize,
+    timestamps: false,
+    freezeTableName: true,
+    underscored: true,
+    modelName: "booking",
+  }
 );
 
 module.exports = Booking;

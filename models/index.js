@@ -1,5 +1,6 @@
 const User = require("./User");
 const Pets = require("./Pets");
+const Booking = require("./Booking");
 
 // reverse user association to pets model
 User.hasMany(Pets, {
@@ -12,6 +13,21 @@ Pets.belongsTo(User, {
 
 // pets to appt association(pet has many appts but appt belongs to one pet)
 
-// user to appt association(user has many appts but appt belongs to one user)
+Pets.hasMany(Booking, {
+  foreignKey: "pets_id",
+});
 
-module.exports = { User, Pets };
+Booking.belongsTo(Pets, {
+  foreignKey: "pets_id",
+});
+
+// user to appt association(user has many appts but appt belongs to one user)
+User.hasMany(Booking, {
+  foreignKey: "owner_id",
+});
+
+Booking.belongsTo(User, {
+  foreignKey: "owner_id",
+});
+
+module.exports = { User, Pets, Booking };
