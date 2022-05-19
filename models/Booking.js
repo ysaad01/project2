@@ -1,9 +1,7 @@
 const { Model, DataTypes, DATE } = require("sequelize");
 const sequelize = require("../config/connection");
 const passport = require("../config/passport");
-
 class Booking extends Model {}
-
 Booking.init(
   {
     id: {
@@ -27,19 +25,11 @@ Booking.init(
       },
     },
     startDate: {
-<<<<<<< Updated upstream
       type: DATE,
       required: true,
     },
     endDate: {
       type: DATE,
-=======
-      type: DataTypes.INTEGER,
-      required: true,
-    },
-    endDate: {
-      type: DataTypes.INTEGER,
->>>>>>> Stashed changes
       required: true,
     },
   },
@@ -51,5 +41,4 @@ Booking.init(
     modelName: "booking",
   }
 );
-
 module.exports = Booking;
