@@ -1,5 +1,6 @@
 const seedUsers = require("./user-seed");
 const seedPets = require("./dog-seed");
+const seedBooking = require("./booking-seed");
 
 const sequelize = require("../config/connection");
 
@@ -9,6 +10,8 @@ const seedAll = async () => {
   await seedUsers();
   console.log("==========");
   await seedPets();
+  console.log("==========");
+  await seedBooking();
 
   process.exit(0);
 };
