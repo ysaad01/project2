@@ -1,9 +1,7 @@
-const { Model, DataTypes, DATE } = require("sequelize");
+const { Model, DataTypes, DATEONLY } = require("sequelize");
 const sequelize = require("../config/connection");
 const passport = require("../config/passport");
-
 class Booking extends Model {}
-
 Booking.init(
   {
     id: {
@@ -27,11 +25,11 @@ Booking.init(
       },
     },
     startDate: {
-      type: DATE,
+      type: DATEONLY,
       required: true,
     },
     endDate: {
-      type: DATE,
+      type: DATEONLY,
       required: true,
     },
   },
@@ -43,5 +41,4 @@ Booking.init(
     modelName: "booking",
   }
 );
-
 module.exports = Booking;
