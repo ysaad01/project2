@@ -45,6 +45,7 @@ router.get("/signup", (req, res) => {
   res.render("signup");
 });
 
+// Render the dashboard
 router.get("/dashboard", (req, res) => {
   res.render("dashboard");
 });
