@@ -1,5 +1,11 @@
+:root {
+  --primary-color: #36688D;
+  --secondary-color: #f3cd05;
+  --tertiary-color: #f49f05;
+}
+
 * {
-  box-sizing: border-box;
+  box-sizing: border-box;  
 }
 
 body,
@@ -8,7 +14,10 @@ html {
   padding: 0;
   margin: 0;
   font-family: sans-serif;
-  color: #333;
+  color: #f6f5f0;
+  background-image: url("../assets/DPH-Chelsea-Lobby.jpg");
+  background-size: cover;
+  background-attachment: fixed;
 }
 
 h1,
@@ -18,25 +27,25 @@ h5,
 h6 {
   font-weight: 700;
   margin: 0;
-  color: #7c4833;
+  color: var(--tertiary-color);
   line-height: 2;
 }
 
 a {
   text-decoration: none;
   font-weight: bold;
-  color: black;
+  color: #080800;
 }
 
 a:hover {
-  color: #aa7845;
+  color: var(--secondary-color);
 }
 
 #title {
-  color: #aa7845;
+  color: var(--secondary-color);
 }
 #title:hover {
-  color: #000;
+  color: #080800;
 }
 
 button {
@@ -58,12 +67,15 @@ input {
   padding: 0.5%;
   border-radius: 5px;
   border: 1px solid #ccc;
+  background-color: #55565B;
+  color: #f6f5f0;
 }
 
 textarea:focus,
 input:focus {
   outline: none;
   border: 1px solid #aa7845;
+  color: #f6f5f0;
 }
 
 textarea {
@@ -89,7 +101,7 @@ form label {
 }
 
 header {
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid rgb(255, 0, 0);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -107,7 +119,7 @@ main {
   padding: 0;
   cursor: pointer;
   text-decoration: none;
-  color: #885237;
+  color: #080800;
   font-size: 100%;
   font-weight: bold;
   transition: color 0.1s;
@@ -116,7 +128,8 @@ main {
 
 .btn-no-style:hover {
   background: none;
-  color: #aa7845;
+  color: var(--secondary-color);
+  border: none;
 }
 
 .delete-post-btn {
@@ -167,7 +180,8 @@ main {
 }
 
 footer {
-  border-top: 1px solid #ccc;
+  border-top: 1px solid rgb(255, 0, 0);
+  color: var(--secondary-color);
   display: flex;
   justify-content: center;
   padding: 1%;
@@ -229,7 +243,7 @@ hr {
 
 button {
   height: 50px;
-  background: orange;
+  background: var(--tertiary-color);
   border: none;
   color: white;
   font-size: 1.25em;
@@ -240,4 +254,22 @@ button {
 
 button:hover {
   border: 2px solid black;
+}
+
+@media screen and (max-width: 575px) {
+  header {
+    display: block;
+    text-align: center;
+  }
+
+  h1,
+  h2,
+  p,
+  a {
+    text-align: center;
+  }
+
+  .btn {
+    width: 100%;
+  }
 }
