@@ -2,10 +2,18 @@ const router = require("express").Router();
 const passport = require("../../config/passport");
 const querystring = require("querystring");
 const { User, Pets, Booking } = require("../../models");
+const dayjs = require("dayjs");
 
 // GET ALL bookings
 router.get("/", (req, res) => {
-  Booking.findAll()
+  Booking.findAll({
+    include: [
+      {
+        model: Pets,
+        attributes: ["id", "dog_name"],
+      },
+    ],
+  })
     .then((bookingData) => res.json(bookingData))
     .catch((err) => {
       console.log(err);
@@ -36,16 +44,16 @@ router.get("/:id", (req, res) => {
 // Create a new booking
 router.post("/", (req, res) => {
   // create a new PET
+  console.log(req.body);
   Booking.create({
-    owner_id: req.body.owner_id,
-    pets_id: req.body.pets_id,
-    dog_name: req.body.dog_name,
-    startDate: req.body.startDate,
-    endDate: req.body.endDate,
+    owner_id: req.session.user_id,
+    pets_id: Number(req.body.pets_id),
+    startDate: dayjs(req.body.startDate).format("MM-DD-YYYY"),
+    endDate: dayjs(req.body.endDate).format("MM-DD-YYYY"),
   })
-    .then((bookingData) => {
+    .then(() => {
       // instead of sending back pet data might want to try res.redirect(/dashboard)
-      res.send(bookingData);
+      res.redirect("/dashboard");
     })
     .catch((err) => {
       console.log(err);

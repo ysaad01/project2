@@ -4,7 +4,7 @@ const { User, Pets } = require("../models");
 const isAuth = require("../utils/auth");
 
 // render dashboard for logged in user
-router.get("/dashboard", isAuth, (req, res) => {
+router.get("/", isAuth, (req, res) => {
   console.log("DASHBOARD ROUTES");
   Pets.findAll({
     where: {
@@ -46,6 +46,12 @@ router.get("/edituser", isAuth, (req, res) => {
       console.log(err);
       res.status(500).json(err);
     });
+});
+
+router.get("/booking", (req, res) => {
+  res.render("booking", {
+    loggedIn: req.session.loggedIn,
+  });
 });
 
 module.exports = router;

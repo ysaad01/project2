@@ -1,10 +1,10 @@
-<form action="reservation.php" method="post">
+<form action="/api/booking" method="post">
   <div class="elem-group">
     <label for="name">Your Name</label>
     <input
       type="text"
       id="name"
-      name="visitor_name"
+      name="user"
       placeholder="John Doe"
       pattern="[A-Z\sa-z]{3,20}"
       required
@@ -12,32 +12,32 @@
   </div>
   <hr />
   <div class="elem-group inlined">
-    <label for="adult">Pets</label>
-    <input
-      type="number"
-      id="adult"
-      name="total_adults"
-      placeholder="2"
-      min="1"
-      required
-    />
+    <label for="pets_id">Pets</label>
+    <select name="pets_id" id="pets_name" class="pet-form">
+      <option>Select Pet 1</option>
+      {{#each pets}}
+        <option
+          name="pets_id"
+          value="{{this.dataValues.id}}"
+        >{{this.dataValues.dog_name}}</option>
+      {{/each}}
+    </select>
   </div>
   <div class="elem-group inlined">
     <label for="checkin-date">Check-in Date</label>
-    <input type="date" id="checkin-date" name="checkin" required />
+    <input type="date" id="checkin-date" name="startDate" required />
   </div>
   <div class="elem-group inlined">
     <label for="checkout-date">Check-out Date</label>
-    <input type="date" id="checkout-date" name="checkout" required />
+    <input type="date" id="checkout-date" name="endDate" required />
   </div>
   <hr />
   <div class="elem-group">
     <label for="message">Anything Else?</label>
     <textarea
       id="message"
-      name="visitor_message"
+      name="user_message"
       placeholder="Tell us anything else that might be important."
-      required
     ></textarea>
   </div>
   <button type="submit">Book The Rooms</button>

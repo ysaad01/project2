@@ -4,7 +4,11 @@
   </div>
 <section class="row">
   <div class = "column">
-    <p>Pets: {{pets.length}}</p>
+    
+    <p>Pets: {{#each pets}}
+      <span>{{this.dog_name}} </span>
+      {{/each}}
+    </p>
     <h2>Add a New Pet</h2>
 
     <form class="new-post-form">
@@ -22,6 +26,13 @@
       </div>
       <button type="submit" class="btn">Add Pet</button>
     </form>
+  </div>
+
+  <div class="column">
+    <h1>Upcoming Bookings</h1>
+    {{#each bookings}}
+    <p>{{this.dataValues.startDate}}: {{this.dataValues.pet.dataValues.dog_name}}</p>
+    {{/each}}
   </div>
 
 </section>
