@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const { User, Pets } = require("../../models");
+const isAuth = require("../../utils/auth");
 
 // get all pets
 router.get("/", (req, res) => {
@@ -32,13 +33,13 @@ router.get("/:id", (req, res) => {
 });
 
 // Create a new pet
-router.post("/", (req, res) => {
+router.post("/", isAuth, (req, res) => {
   // create a new PET
   Pets.create({
     dog_name: req.body.dog_name,
     gender: req.body.gender,
     bio: req.body.bio,
-    owner_id: req.body.owner_id,
+    owner_id: req.session.user_id,
   })
     .then((petData) => {
       // instead of sending back pet data might want to try res.redirect(/dashboard)

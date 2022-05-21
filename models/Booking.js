@@ -25,11 +25,11 @@ Booking.init(
       },
     },
     startDate: {
-      type: DATEONLY,
+      type: DataTypes.STRING,
       required: true,
     },
     endDate: {
-      type: DATEONLY,
+      type: DataTypes.STRING,
       required: true,
     },
   },
