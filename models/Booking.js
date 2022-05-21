@@ -1,6 +1,5 @@
 const { Model, DataTypes, DATEONLY } = require("sequelize");
 const sequelize = require("../config/connection");
-const passport = require("../config/passport");
 class Booking extends Model {}
 Booking.init(
   {

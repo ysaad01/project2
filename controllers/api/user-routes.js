@@ -1,8 +1,6 @@
 const router = require("express").Router();
-const { User, Pets } = require("../../models");
+const { User, Pets, Booking } = require("../../models");
 const session = require("express-session");
-const passport = require("../../config/passport");
-const genPassword = require("../../lib/passwordUtils").genPassword;
 const isAuth = require("../../utils/auth");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 
@@ -22,13 +20,6 @@ router.get("/", (req, res) => {
     });
 });
 
-// router.post(
-//   "/login",
-//   passport.authenticate("local", {
-//     failureRedirect: "/login",
-//     successRedirect: "/dashboard",
-//   })
-// );
 router.get("/logout", (req, res, next) => {
   req.logout();
   res.redirect("/");
@@ -62,13 +53,10 @@ router.get("/:id", async (req, res) => {
 
 // CREATE new user
 router.post("/", (req, res) => {
-  const hashPass = genPassword(req.body.password);
-  console.log("SIGNUP", hashPass);
   User.create({
     username: req.body.username,
     email: req.body.email,
-    password: hashPass.hash,
-    salt: hashPass.salt,
+    password: req.body.password,
   })
     .then((dbUserData) => {
       req.session.save(() => {
@@ -134,10 +122,6 @@ router.delete("/:id", async (req, res) => {
 
 // User login route
 router.post("/login", (req, res) => {
-  console.log("LOGIN", req.body);
-  // passport.authenticate("local", (err, user, info) => {
-  //   console.log("LOGGING IN");
-  // });
   User.findOne({
     where: {
       email: req.body.email,
@@ -149,11 +133,11 @@ router.post("/login", (req, res) => {
         .json({ message: "No user was found with that email address!" });
       return;
     }
-    // const validPassword = dbUserData.checkPassword(req.body.password);
-    // if (!validPassword) {
-    //   res.status(400).json({ message: "Invalid Password. Please try again!" });
-    //   return;
-    // }
+    const validPassword = dbUserData.checkPassword(req.body.password);
+    if (!validPassword) {
+      res.status(400).json({ message: "Invalid Password. Please try again!" });
+      return;
+    }
     req.session.save(() => {
       // declare session variables
       req.session.user_id = dbUserData.id;

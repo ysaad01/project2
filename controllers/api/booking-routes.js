@@ -1,5 +1,4 @@
 const router = require("express").Router();
-const passport = require("../../config/passport");
 const querystring = require("querystring");
 const { User, Pets, Booking } = require("../../models");
 const dayjs = require("dayjs");
