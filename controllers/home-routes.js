@@ -96,7 +96,7 @@ router.get("/edituser", isAuth, (req, res) => {
     });
 });
 // edit pet by logged in user
-router.get("/edit/:id", isAuth, (req, res) => {
+router.get("/edit/pets/:id", isAuth, (req, res) => {
   Pets.findOne({
     where: {
       id: req.session.user_id,
@@ -109,6 +109,26 @@ router.get("/edit/:id", isAuth, (req, res) => {
       }
       const user = dbPetsData.get({ plain: true });
       res.render("edit-pet", { user, loggedIn: true });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+// edit booking by logged in user
+router.get("/edit/:id", isAuth, (req, res) => {
+  Booking.findOne({
+    where: {
+      id: req.session.user_id,
+    },
+  })
+    .then((dbBookingsData) => {
+      if (!dbBookingsData) {
+        res.status(404).json({ message: "No booking found with that ID" });
+        return;
+      }
+      const booking = dbBookingsData.get({ plain: true });
+      res.render("edit-booking", { booking, loggedIn: true });
     })
     .catch((err) => {
       console.log(err);

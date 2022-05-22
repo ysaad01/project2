@@ -28,21 +28,26 @@
     </form>
   </div>
 
+  {{#if bookings}}
   <div class="column">
     <h1>Upcoming Bookings</h1>
     {{#each bookings}}
-    <p>{{this.dataValues.startDate}}: {{this.dataValues.pet.dataValues.dog_name}}</p>
+    <ol>
+      {{this.dataValues.startDate}}: {{this.dataValues.pet.dataValues.dog_name}}
+    </ol>
+    <a href="/edit/{{this.dataValues.id}}" class="edit-link">Update {{this.dataValues.pet.dataValues.dog_name}}'s Booking</a>
     {{/each}}
   </div>
+  {{/if}}
 
 </section>
 
 {{#if pets}}
-<section>
+<section class="column">
   <h2>Your Pets</h2>
   <ol>
     {{#each pets as |pet|}}
-      <a href="/edit/{{pet.id}}" class="edit-link">Update {{dog_name}}'s Information</a>
+      <a href="/edit/pets/{{pet.id}}" class="edit-link">Update {{dog_name}}'s Information</a>
     {{/each}}
   </ol>
 </section>

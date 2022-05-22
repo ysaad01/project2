@@ -61,20 +61,32 @@ router.post("/", (req, res) => {
 });
 
 // Update a booking
-router.put("/:id", (req, res, next) => {
-  Booking.findByIdAndUpdate({ _id: req.params.id }, req.body).then(() => {
-    Booking.findOne({ _id: req.params.id }).then((booking) => {
-      res.send(booking);
+router.put("/:id", async (req, res) => {
+  // update a booking by its `id` value
+  try {
+    const updateBookingData = await Booking.update(req.body, {
+      where: {
+        id: req.params.id,
+      },
     });
-  });
+    if (updateBookingData[0] === 0) {
+      throw {
+        status: 404,
+        message: "No Booking was found with that ID",
+      };
+    }
+    res.status(201).json({
+      message: "Booking has been updated!",
+      data: updateBookingData,
+    });
+  } catch (err) {
+    if (err.status === 404) {
+      res.status(404).json(err);
+    } else {
+      res.status(500).json(err);
+    }
+  }
 });
-
-// Delete a booking
-// router.delete("/:id", (req, res, next) => {
-//   Booking.findByIdAndRemove({ _id: req.params.id }).then((booking) => {
-//     res.send(booking);
-//   });
-// });
 
 router.delete("/:id", async (req, res) => {
   // delete a user by its `id` value

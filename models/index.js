@@ -21,6 +21,7 @@ Pets.hasMany(Booking, {
 
 Booking.belongsTo(Pets, {
   foreignKey: "pets_id",
+  onDelete: "SET NULL",
 });
 
 // user to appt association(user has many appts but appt belongs to one user)
@@ -30,6 +31,7 @@ User.hasMany(Booking, {
 
 Booking.belongsTo(User, {
   foreignKey: "owner_id",
+  onDelete: "SET NULL",
 });
 
 module.exports = { User, Pets, Booking };
