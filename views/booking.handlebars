@@ -13,11 +13,11 @@
   </div>
   <div class="elem-group inlined">
     <label for="checkin-date">Check-in Date</label>
-    <input type="date" id="checkin-date" name="startDate" required />
+    <input type="date" id="checkin-date" name="startDate" class="form-control" required />
   </div>
   <div class="elem-group inlined">
     <label for="checkout-date">Check-out Date</label>
-    <input type="date" id="checkout-date" name="endDate" required />
+    <input type="date" id="checkout-date" name="endDate" class="form-control" required />
   </div>
   <div class="elem-group fixed">
     <label for="message">Anything Else?</label>
@@ -25,9 +25,10 @@
       id="message"
       name="user_message"
       placeholder="Tell us anything else that might be important."
+      class="bg-light text-dark"
     ></textarea>
   </div>
-  <button class="d-flex justify-content-center" type="submit">Book The Rooms</button>
+  <button class="d-flex justify-content-center btn bg-warning text-light" type="submit">Book The Rooms</button>
 </form>
 
 <script src="/js/booking.js"></script>

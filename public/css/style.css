@@ -37,9 +37,9 @@ a {
   color: #080800;
 }
 
-#welcome-container {
+/* #welcome-container {
   background-color: #fff;
-}
+} */
 
 a:hover {
   color: var(--secondary-color);
@@ -263,6 +263,7 @@ button {
 
 button:hover {
   border: 2px solid black;
+  color: #080800;
 }
 
 @media screen and (max-width: 575px) {
