@@ -2,7 +2,7 @@
 
 [![MSU](https://img.shields.io/badge/MSU-Coding%20Bootcamp-green/)](https://bootcamp.msu.edu/)
 
-## Technologies
+### Technologies
 
 ![Technologies](https://img.shields.io/badge/-Git-F05032?logo=Git&logoColor=white)
 ![Technologies](https://img.shields.io/badge/-JavaScript-007396?logo=JavaScript&logoColor=white)
@@ -25,19 +25,26 @@
 
 ## [Description](#table-of-contents)
 
-A full stack Doggy Hotel Website. A user can login and add their pets and book a stay for their furry friends.
+A full stack Doggy Hotel Website that was created using the Model, View, Controller paradigm.  
+A user can login and add their pets and book a stay for their furry friends.  
+This site is currently hosted on [Heroku](https://sheltered-crag-40772.herokuapp.com/) and can also be run locally using the files located in the Github Repository.
 
 ## [Installation](#table-of-contents)
 
-npm i
+- Clone Repository
+- Run `npm i` to install dependencies
 
 ## [Usage](#table-of-contents)
 
-node server.js
+- `npm start`
+- `node server.js`
 
 ## [Contributors](#table-of-contents)
 
-Mike Cota
+- [Mike Cota](https://github.com/mikecota09)
+- [Robbie Kahl](https://github.com/shorty008)
+- [Marissa Martinez](https://github.com/magical91)
+- [Abe Shaw](https://github.com/abeshaw97)
 
 ## [Questions](#table-of-contents)
 
