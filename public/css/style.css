@@ -71,8 +71,8 @@ input {
   padding: 0.5%;
   border-radius: 5px;
   border: 1px solid #ccc;
-  background-color: #fff;
-  color: #000;
+  background-color: #55565b;
+  color: #f6f5f0;
 }
 
 textarea:focus,
