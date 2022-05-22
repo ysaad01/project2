@@ -37,6 +37,10 @@ a {
   color: #080800;
 }
 
+#welcome-container {
+  background-color: #fff;
+}
+
 a:hover {
   color: var(--secondary-color);
 }
