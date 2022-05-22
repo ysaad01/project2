@@ -33,9 +33,8 @@
     <h1>Upcoming Bookings</h1>
     {{#each bookings}}
     <ol>
-      {{this.dataValues.startDate}}: {{this.dataValues.pet.dataValues.dog_name}}
+      <a href="/edit/{{this.dataValues.id}}" class="edit-link">Update {{this.dataValues.pet.dataValues.dog_name}}'s Booking</a>
     </ol>
-    <a href="/edit/{{this.dataValues.id}}" class="edit-link">Update {{this.dataValues.pet.dataValues.dog_name}}'s Booking</a>
     {{/each}}
   </div>
   {{/if}}
