@@ -5,13 +5,18 @@
   </h2>
   <form class="edit-post-form">
     <div>
-      <input type="text" id="post-title" name="post-title" />
+      <input
+        type="text"
+        id="post-title"
+        name="post-title"
+        value="{{pet.dog_name}}"
+      />
     </div>
     <div>
-      <textarea name="post-text">{{gender}}</textarea>
+      <textarea name="post-text">{{pet.gender}}</textarea>
     </div>
     <div>
-      <textarea name="bio-text">{{bio}}</textarea>
+      <textarea name="bio-text">{{pet.bio}}</textarea>
     </div>
     <button type="submit">Save Changes</button>
     <button type="button" class="delete-post-btn">Delete Pet</button>

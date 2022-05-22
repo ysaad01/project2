@@ -5,6 +5,8 @@ const Booking = require("./Booking");
 // reverse user association to pets model
 User.hasMany(Pets, {
   foreignKey: "owner_id",
+  onDelete: "cascade",
+  hooks: true,
 });
 // pets association to user model
 Pets.belongsTo(User, {
