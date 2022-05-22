@@ -60,8 +60,6 @@ router.get("/signup", (req, res) => {
   res.render("signup");
 });
 
-// Render the dashboard
-
 router.get("/booking", isAuth, (req, res) => {
   Pets.findAll({
     where: {
@@ -91,6 +89,26 @@ router.get("/edituser", isAuth, (req, res) => {
       }
       const user = dbUserData.get({ plain: true });
       res.render("edit-user", { user, loggedIn: true });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+// edit pet by logged in user
+router.get("/edit/:id", isAuth, (req, res) => {
+  Pets.findOne({
+    where: {
+      id: req.session.user_id,
+    },
+  })
+    .then((dbPetsData) => {
+      if (!dbPetsData) {
+        res.status(404).json({ message: "No pet found with that ID" });
+        return;
+      }
+      const user = dbPetsData.get({ plain: true });
+      res.render("edit-pet", { user, loggedIn: true });
     })
     .catch((err) => {
       console.log(err);

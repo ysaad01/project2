@@ -37,15 +37,12 @@
 
 </section>
 
-{{#if pets.length}}
+{{#if pets}}
 <section>
   <h2>Your Pets</h2>
   <ol>
     {{#each pets as |pet|}}
-    <li>
-
-      <a href="/dashboard/edit/{{pets.id}}" class="edit-link">Edit Pet Information</a>
-    </li>
+      <a href="/edit/{{pet.id}}" class="edit-link">Update {{dog_name}}'s Information</a>
     {{/each}}
   </ol>
 </section>

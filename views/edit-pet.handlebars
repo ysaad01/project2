@@ -1,0 +1,22 @@
+<article>
+  <a href="/dashboard"> &larr; Back to Dashboard</a>
+  <h2>
+    Edit Pet
+  </h2>
+  <form class="edit-post-form">
+    <div>
+      <input type="text" id="post-title" name="post-title" />
+    </div>
+    <div>
+      <textarea name="post-text">{{gender}}</textarea>
+    </div>
+    <div>
+      <textarea name="bio-text">{{bio}}</textarea>
+    </div>
+    <button type="submit">Save Changes</button>
+    <button type="button" class="delete-post-btn">Delete Pet</button>
+  </form>
+</article>
+
+<script src="/js/edit-pet.js"></script>
+{{! <script src="/js/delete-pet.js"></script> }}
