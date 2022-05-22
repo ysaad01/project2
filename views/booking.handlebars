@@ -1,6 +1,6 @@
 <form action="/api/booking" method="post">
   <hr />
-  <div class="elem-group inlined">
+  <div class="elem-group">
     <label for="pets_id">Select Pet</label>
     <select name="pets_id" id="pets_name" class="pet-form">
       {{#each pets}}
@@ -19,8 +19,7 @@
     <label for="checkout-date">Check-out Date</label>
     <input type="date" id="checkout-date" name="endDate" required />
   </div>
-  <hr />
-  <div class="elem-group">
+  <div class="elem-group fixed">
     <label for="message">Anything Else?</label>
     <textarea
       id="message"
@@ -28,7 +27,7 @@
       placeholder="Tell us anything else that might be important."
     ></textarea>
   </div>
-  <button type="submit">Book The Rooms</button>
+  <button class="d-flex justify-content-center" type="submit">Book The Rooms</button>
 </form>
 
 <script src="/js/booking.js"></script>

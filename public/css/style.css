@@ -1,15 +1,15 @@
 :root {
-  --primary-color: #36688D;
+  --primary-color: #36688d;
   --secondary-color: #f3cd05;
   --tertiary-color: #f49f05;
 }
 
 * {
-  box-sizing: border-box;  
+  box-sizing: border-box;
 }
 
 body,
-html {
+header {
   height: 100%;
   padding: 0;
   margin: 0;
@@ -67,7 +67,7 @@ input {
   padding: 0.5%;
   border-radius: 5px;
   border: 1px solid #ccc;
-  background-color: #55565B;
+  background-color: #55565b;
   color: #f6f5f0;
 }
 
@@ -111,6 +111,10 @@ header {
 main {
   flex: 1;
   padding: 2% 4%;
+}
+
+.logout-btn {
+  font-family: sans-serif;
 }
 
 .btn-no-style {
