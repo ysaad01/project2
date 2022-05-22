@@ -1,8 +1,6 @@
-# Doggy Hotel
+# [Doggy Hotel](https://github.com/ysaad01/project2)
 
 [![MSU](https://img.shields.io/badge/MSU-Coding%20Bootcamp-green/)](https://bootcamp.msu.edu/)
-
-<!-- ![GitHub](https://img.shields.io/github/license/jgarcia45/e-commerce-back-end) -->
 
 ## Technologies
 
@@ -14,3 +12,34 @@
 ![Technologies](https://img.shields.io/badge/-Sequelize-52B0E7?logo=Sequelize&logoColor=white)
 ![Technologies](https://img.shields.io/badge/-Express-000000?logo=&logoColor=white)
 ![Technologies](https://img.shields.io/badge/-dotenv-000000?logo=&logoColor=white)
+
+## Table of Contents
+
+- [Description](#description)
+- [Installation](#installation)
+- [Usage](#usage)
+
+- [Contributors](#contributors)
+
+- [Questions](#questions)
+
+## [Description](#table-of-contents)
+
+A full stack Doggy Hotel Website. A user can login and add their pets and book a stay for their furry friends.
+
+## [Installation](#table-of-contents)
+
+npm i
+
+## [Usage](#table-of-contents)
+
+node server.js
+
+## [Contributors](#table-of-contents)
+
+Mike Cota
+
+## [Questions](#table-of-contents)
+
+- If you have any questions please [**Email**](mailto:ysaad2325@gmail.com) me Ü
+- Check out more of my work at [**GitHub**](https://github.com/ysaad01) Ü
