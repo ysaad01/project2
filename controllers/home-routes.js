@@ -99,7 +99,7 @@ router.get("/edituser", isAuth, (req, res) => {
 router.get("/edit/pets/:id", isAuth, (req, res) => {
   Pets.findOne({
     where: {
-      id: req.session.user_id,
+      owner_id: req.session.user_id,
     },
   })
     .then((dbPetsData) => {
@@ -119,7 +119,7 @@ router.get("/edit/pets/:id", isAuth, (req, res) => {
 router.get("/edit/:id", isAuth, (req, res) => {
   Booking.findOne({
     where: {
-      id: req.session.user_id,
+      owner_id: req.session.user_id,
     },
   })
     .then((dbBookingsData) => {
