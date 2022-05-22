@@ -11,14 +11,14 @@
     </p>
     <h2>Add a New Pet</h2>
 
-    <form class="new-post-form">
+    <form class="new-pet-form">
       <div>
-        <label for="post-title">Dog Name</label>
-        <input type="text" id="post-title" name="post-title" />
+        <label for="dog-name">Dog Name</label>
+        <input type="text" id="dog-name" name="dog-name" />
       </div>
       <div>
-        <label for="post-text">Gender</label>
-        <textarea id="post-text" name="post-text"></textarea>
+        <label for="gender-text">Gender</label>
+        <textarea id="gender-text" name="gender-text"></textarea>
       </div>
       <div>
         <label for="bio-text">Bio</label>
@@ -33,7 +33,7 @@
     <h1>Upcoming Bookings</h1>
     {{#each bookings}}
     <ol>
-      <a href="/edit/{{this.dataValues.id}}" class="edit-link">Update {{this.dataValues.pet.dataValues.dog_name}}'s Booking</a>
+      <a href="/edit/{{this.dataValues.id}}" class="edit-booking-link">Update {{this.dataValues.pet.dataValues.dog_name}}'s Booking</a>
     </ol>
     {{/each}}
   </div>
@@ -46,7 +46,7 @@
   <h2>Your Pets</h2>
   <ol>
     {{#each pets as |pet|}}
-      <a href="/edit/pets/{{pet.id}}" class="edit-link">Update {{dog_name}}'s Information</a>
+      <a href="/edit/pets/{{pet.id}}" class="edit-pet-link">Update {{dog_name}}'s Information</a>
     {{/each}}
   </ol>
 </section>

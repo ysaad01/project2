@@ -5,8 +5,8 @@ async function editFormHandler(event) {
     window.location.toString().split("/").length - 1
   ];
 
-  const dog_name = document.querySelector('input[name="post-title"]').value;
-  const gender = document.querySelector('textarea[name="post-text"]').value;
+  const dog_name = document.querySelector('input[name="dog-name"]').value;
+  const gender = document.querySelector('textarea[name="gender-text"]').value;
   const bio = document.querySelector('textarea[name="bio-text"]').value;
 
   const response = await fetch(`/api/pets/${id}`, {
@@ -28,5 +28,5 @@ async function editFormHandler(event) {
 }
 
 document
-  .querySelector(".edit-post-form")
+  .querySelector(".edit-pet-form")
   .addEventListener("submit", editFormHandler);
